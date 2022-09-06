@@ -1,5 +1,6 @@
-import mongoose from "mongoose";
-const { Schema } = mongoose;
+import mongoose from "mongoose"
+const { Schema } = mongoose
+const { ObjectId } = Schema
 const userSchema = new Schema(
     {
 
@@ -22,7 +23,12 @@ const userSchema = new Schema(
         },
         pan: {
             type: String,
-        }
+        },
+        kycVerified: {
+            type: Boolean,
+            default: false
+        },
+        walletId: { type: ObjectId, ref: "Wallet" }
     },
     { timestamps: true }
 );

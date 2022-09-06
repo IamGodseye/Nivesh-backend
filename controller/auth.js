@@ -46,9 +46,11 @@ export const login = async (req, res) => {
 export const doKyc = async (req, res) => {
     try {
         const { panNumber } = req.body
+        const id = req.user._id
+
         const panRegex = /[A-Z]{5}[0-9]{4}[A-Z]{1}/
         if (!panRegex.test(panNumber)) throw Error('Pan card not as per format')
-        const id = req.user._id
+
 
         await User.findByIdAndUpdate(id,
             {
@@ -58,6 +60,21 @@ export const doKyc = async (req, res) => {
 
         return res.status(200).json({ success: true, message: 'kyc done' })
 
+    }
+    catch (error) {
+        return res.status(400).json({ success: false, message: error.message })
+    }
+}
+export const verifyKyc = async (req, res) => {
+    try {
+        const id = req.user._id
+        await User.findByIdAndUpdate(id,
+            {
+                kycVerified: true
+            }
+        )
+
+        return res.status(200).json({ success: true, message: 'kyc verified' })
     }
     catch (error) {
         return res.status(400).json({ success: false, message: error.message })
