@@ -8,38 +8,30 @@ export const signup = async (req, res) => {
         if (!email || !password) throw Error('error in payload')
         const hashedPassword = await hashPassword(password)
         const user = new User({ email, password: hashedPassword })
+
         await user.save()
         return res.status(200).json({ success: true, message: 'user is saved in the databse' })
 
     }
     catch (error) {
-        reply.code(400).send({ success: false, message: error.message })
+        return res.status(400).json({ success: false, message: error.message })
     }
 }
-export const login = async (req, reply) => {
+export const login = async (req, res) => {
     try {
-        // extract body from req
-        const { body } = req
-
-        // extract data from body
-        const { email, password } = body
+        const { email, password } = req.body
 
         // find the user with the email
-        const user = await prisma.user.findUnique({
-            where: {
-                email
-            },
-        })
+        const user = await User.findOne({ email })
 
         // check if the password is matching or not
         const match = await comparePassword(password, user.password);
         if (!match) throw Error('Wrong Password...')
 
-        //
-        return { success: true, user, message: 'User has logged in successfully' }
+
+        return res.status(200).json({ success: true, user, message: 'User has logged in successfully' })
     }
     catch (error) {
-        reply.code(400).send({ success: false, message: error.message })
+        return res.status(400).json({ success: false, message: error.message })
     }
-
 }
