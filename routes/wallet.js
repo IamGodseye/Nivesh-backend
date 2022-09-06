@@ -1,10 +1,10 @@
 import { Router } from 'express'
-import { createWallet } from '../controller/wallet';
+import { addMoney, createWallet, verfiyPayment } from '../controller/wallet';
 import { requireSignin } from '../middleware';
 
 const router = Router();
 router.get('/create-wallet', requireSignin, createWallet)
-router.post('/create-order', requireSignin,)
-router.post('/verfiy-order', requireSignin,)
+router.post('/create-order', addMoney)
+router.post('/verify-payment', verfiyPayment)
 
 module.exports = router

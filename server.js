@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
 import { readdirSync } from 'fs'
+import cors from 'cors'
 dotenv.config()
 const app = express();
 
@@ -11,7 +12,7 @@ mongoose.connect(process.env.DATABASE_URL, { useUnifiedTopology: true })
     .then(() => console.log("DB Connected......."))
     .catch((err) => console.log("DB Connection Err=>", err));
 
-
+app.use(cors());
 app.use(express.json({ limit: "5mb" }));
 app.use(morgan('dev'))
 
@@ -22,7 +23,7 @@ readdirSync("./routes").map((r) => {
 });
 
 
-const PORT = 3000
+const PORT = 5500
 app.listen(PORT, () =>
     console.log(`Server is running on port ${PORT}`)
 )

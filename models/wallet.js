@@ -6,7 +6,8 @@ const walletSchema = new Schema(
         balance: {
             type: String,
         },
-        userId: { type: ObjectId, ref: "User" }
+        userId: { type: ObjectId, ref: "User" },
+        transactions: [{ type: ObjectId, ref: "Transactions" }],
     },
     { timestamps: true }
 );

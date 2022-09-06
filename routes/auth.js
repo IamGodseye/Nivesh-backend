@@ -7,4 +7,5 @@ router.post('/signup', signup)
 router.post('/login', login)
 router.post('/kyc', requireSignin, doKyc)
 router.get('/kyc-verify', requireSignin, verifyKyc)
+
 module.exports = router
