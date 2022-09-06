@@ -20,6 +20,9 @@ const userSchema = new Schema(
             default: ["User"],
             enum: ["User", "Manager", "Admin"],
         },
+        pan: {
+            type: String,
+        }
     },
     { timestamps: true }
 );
