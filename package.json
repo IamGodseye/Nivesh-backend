@@ -2,22 +2,22 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "server.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "nodemon -r esm server.js",
     "dev": "nodemon"
   },
   "author": "Ajay Ghiyad",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@prisma/client": "^4.2.0",
     "address": "^1.2.0",
     "bcryptjs": "^2.4.3",
-    "fastify": "^4.3.0",
+    "dotenv": "^16.0.1",
+    "esm": "^3.2.25",
+    "mongoose": "^6.5.3",
+    "morgan": "^1.10.0",
     "nanoid": "^4.0.0",
-    "nodemon": "^2.0.19",
-    "prisma": "^4.1.1"
+    "nodemon": "^2.0.19"
   }
 }
