@@ -7,4 +7,4 @@ router.get('/create-wallet', requireSignin, createWallet)
 router.post('/create-order', addMoney)
 router.post('/verify-payment', verfiyPayment)
 
-module.exports = router
+export { router }

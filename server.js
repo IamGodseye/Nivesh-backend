@@ -12,9 +12,7 @@ import fetch from 'node-fetch';
 
 import { router as stockRoutes } from './routes/stock.js'
 import { router as authRoutes } from './routes/auth.js'
-// const fetch = require('node-fetch')
-// import axios from 'axios'
-// const axios = require('axios').create({baseUrl: ``})
+import { router as buisnessRoutes } from './routes/buisness.js'
 
 dotenv.config()
 const app = express();
@@ -36,6 +34,7 @@ app.use(express.json({ limit: "5mb" }));
 app.use(morgan('dev'))
 app.use('/api', stockRoutes)
 app.use('/api', authRoutes)
+app.use('/api', buisnessRoutes)
 
 
 app.all('/', (req, res) => {
